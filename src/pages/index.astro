@@ -5,20 +5,44 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Expediente laboral</title>
 <style is:inline>
-:root{font:15px/1.5 system-ui,sans-serif;color:#17342f;background:#f2f5f2;--green:#165c4d;--line:#cbdad3}
-*{box-sizing:border-box}body{margin:0}header{background:#112f2a;color:#fff;padding:28px max(5%,calc((100vw - 1200px)/2));display:flex;justify-content:space-between;gap:20px;align-items:center}
-header p{margin:0;color:#b9ddce}h1{font-size:32px;margin:0}h2{margin:0 0 14px;font-size:20px}h3{margin:0;font-size:16px}main{max-width:1240px;margin:auto;padding:28px 20px;display:grid;grid-template-columns:260px minmax(0,1fr);gap:24px;align-items:start}
-section,aside,.actions{background:white;border:1px solid var(--line);border-radius:12px;padding:20px;margin-bottom:15px}
-button,.button{border:1px solid var(--line);background:white;color:var(--green);border-radius:7px;padding:8px 12px;font:inherit;font-weight:650;cursor:pointer;text-decoration:none;display:inline-block}
-button.primary,.primary{color:white;background:var(--green);border-color:var(--green)}button:disabled{opacity:.55;cursor:not-allowed}
-aside button{width:100%;text-align:left;margin-bottom:7px}aside input{margin:8px 0 14px}.active{border-color:var(--green);background:#e1f0ea}
+:root{
+  --canvas:#f4f0e7;
+  --surface:#fbf8f1;
+  --ink:#13251f;
+  --muted:#3d554c;
+  --accent:#2f59d9;
+  --orange:#ff8a54;
+  --line:#d3d1c6;
+  --control-line:#818477;
+  --selected:color-mix(in srgb,var(--accent) 9%,var(--surface));
+  --pending:#eeeae2;
+  --approved:#e2e9df;
+  --observed:color-mix(in srgb,var(--orange) 30%,var(--surface));
+  --danger:#84351e;
+  font:15px/1.5 system-ui,sans-serif;
+  color:var(--ink);
+  background:var(--canvas);
+  accent-color:var(--accent);
+}
+*{box-sizing:border-box}body{margin:0}
+::selection{color:var(--canvas);background:var(--accent)}
+header{border-bottom:1px solid var(--line);padding:28px max(5%,calc((100vw - 1200px)/2));display:flex;justify-content:space-between;gap:20px;align-items:center}
+header p{margin:0;color:var(--muted)}h1{font-size:32px;margin:0}h2{margin:0 0 14px;font-size:20px}h3{margin:0;font-size:16px}main{max-width:1240px;margin:auto;padding:28px 20px;display:grid;grid-template-columns:260px minmax(0,1fr);gap:24px;align-items:start}
+section,aside,.actions{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px;margin-bottom:15px}
+button,.button{border:1px solid var(--control-line);background:var(--surface);color:var(--ink);border-radius:7px;padding:8px 12px;font:inherit;font-weight:650;cursor:pointer;text-decoration:none;display:inline-block}
+header button,button.primary{color:var(--canvas);background:var(--ink);border-color:var(--ink)}
+button:not(:disabled):hover,.button:hover{border-color:var(--accent)}
+button:disabled{color:var(--muted);background:var(--pending);border-color:var(--line);cursor:not-allowed}
+aside button{width:100%;text-align:left;margin-bottom:7px}aside input{margin:8px 0 14px}.active{border-color:var(--accent);background:var(--selected)}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px 16px}label{display:block;font-weight:600;font-size:.9rem}
-input,select,textarea{width:100%;background:#fff;color:inherit;border:1px solid #aec3b9;border-radius:6px;padding:8px;margin-top:4px;font:inherit}textarea{resize:vertical}input:focus,select:focus,textarea:focus,button:focus-visible,a:focus-visible{outline:2px solid #2a8069;outline-offset:2px}
-details{border:1px solid var(--line);border-radius:8px;padding:10px 13px;margin-bottom:9px}summary{cursor:pointer;font-weight:700}details p{margin:8px 0;color:#405950}small,.muted{color:#456259}.pill{float:right;border-radius:12px;padding:1px 8px;background:#eff2ed;color:#35544b;font-size:12px}.approved{background:#d6f2e2}.observed{background:#ffe8c8}.file-list{padding-left:19px;overflow-wrap:anywhere}a{color:#126651}
-.actions{position:sticky;bottom:0;box-shadow:0 -5px 25px #17342f11}.actions p{margin:7px 0 0}.toolbar{display:flex;flex-wrap:wrap;gap:8px}.error{color:#a12b15}.title-row{display:flex;justify-content:space-between;align-items:start;gap:10px}
+input,select,textarea{width:100%;background:var(--surface);color:inherit;border:1px solid var(--control-line);border-radius:6px;padding:8px;margin-top:4px;font:inherit}textarea{resize:vertical}
+input,textarea{caret-color:var(--accent)}
+input:focus,select:focus,textarea:focus,button:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+details{border:1px solid var(--line);border-radius:8px;padding:10px 13px;margin-bottom:9px}summary{cursor:pointer;font-weight:700}details p{margin:8px 0;color:var(--muted)}small,.muted{color:var(--muted)}.pill{float:right;border-radius:12px;padding:1px 8px;background:var(--pending);color:var(--ink);font-size:12px}.approved{background:var(--approved)}.observed{background:var(--observed)}.file-list{padding-left:19px;overflow-wrap:anywhere}a{color:var(--accent)}
+.actions{position:sticky;bottom:0;box-shadow:0 -5px 25px #13251f11}.actions p{margin:7px 0 0}.toolbar{display:flex;flex-wrap:wrap;gap:8px}.error{color:var(--danger)}.title-row{display:flex;justify-content:space-between;align-items:start;gap:10px}
 .certificate{border-top:1px solid var(--line);margin-top:16px;padding-top:16px}.certificate p{margin:6px 0 0}
-.danger{color:#a12b15;border-color:#d2a395}button[hidden]{display:none}
-table{width:100%;border-collapse:collapse;margin-top:12px}td{border-bottom:1px solid var(--line);padding:6px 9px}td:last-child{text-align:right;white-space:nowrap}tr:last-child{background:#e1f0ea;font-weight:750}
+.danger{color:var(--danger);border-color:var(--danger)}button[hidden]{display:none}
+table{width:100%;border-collapse:collapse;margin-top:12px}td{border-bottom:1px solid var(--line);padding:6px 9px}td:last-child{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}tr:last-child{background:var(--selected);font-weight:750}tr:last-child td:last-child{color:var(--accent)}
 @media(max-width:760px){main{grid-template-columns:1fr;gap:0}header{flex-wrap:wrap}.actions{position:static}}
 </style>
 </head>
