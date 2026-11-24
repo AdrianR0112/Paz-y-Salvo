@@ -1,0 +1,32 @@
+{
+  "demo": true,
+  "empresa": "Niebla Andina Demostración S.A.S.",
+  "ruc": "DEMO-RUC-001",
+  "representante": "Elena Prado Nube",
+  "trabajador": "Daniela Sierra Alba",
+  "cedula": "DEMO-ID-001",
+  "cargo": "Asistente de operaciones",
+  "ciudad": "Ambato, Tungurahua",
+  "ingreso": "2025-11-01",
+  "salida": "2026-10-31",
+  "causa": "Acuerdo de las partes",
+  "motivo": "Acuerdo escrito de terminación, art. 169 numeral 2",
+  "sueldo": "720",
+  "dias": "30",
+  "vac_generadas": "15",
+  "vac_gozadas": "0",
+  "vac_base": "8640",
+  "decimo3": "720",
+  "sbu": "482",
+  "meses14": "1",
+  "anios185": "1",
+  "otros": "0",
+  "deducciones": "68.04",
+  "detalle": "Octubre de 2026 íntegro pendiente. Décimos mensualizados y pagados hasta septiembre. Deducción: aporte personal al IESS de octubre (720 × 9,45 %). Sin fondos de reserva pendientes al cierre del primer año.",
+  "checks": [
+    {"responsable": "Paula Bruma Sol", "fecha": "2026-10-31", "estado": "Pendiente", "observacion": "Acuerdo y saldo de 15 días conciliados."},
+    {"responsable": "Mateo Loma Luz", "fecha": "2026-10-31", "estado": "Pendiente", "observacion": "Portátil y cargador recibidos conformes."},
+    {"responsable": "Julia Prado Cima", "fecha": "2026-10-31", "estado": "Pendiente", "observacion": "Credencial devuelta y accesos cerrados."},
+    {"responsable": "Sara Cumbre Valle", "fecha": "2026-11-02", "estado": "Pendiente", "observacion": "Rol final revisado, sin anticipos pendientes."}
+  ]
+}

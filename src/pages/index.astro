@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Expediente laboral</title>
+<style is:inline>
+:root{font:15px/1.5 system-ui,sans-serif;color:#17342f;background:#f2f5f2;--green:#165c4d;--line:#cbdad3}
+*{box-sizing:border-box}body{margin:0}header{background:#112f2a;color:#fff;padding:28px max(5%,calc((100vw - 1200px)/2));display:flex;justify-content:space-between;gap:20px;align-items:center}
+header p{margin:0;color:#b9ddce}h1{font-size:32px;margin:0}h2{margin:0 0 14px;font-size:20px}h3{margin:0;font-size:16px}main{max-width:1240px;margin:auto;padding:28px 20px;display:grid;grid-template-columns:260px minmax(0,1fr);gap:24px;align-items:start}
+section,aside,.actions{background:white;border:1px solid var(--line);border-radius:12px;padding:20px;margin-bottom:15px}
+button,.button{border:1px solid var(--line);background:white;color:var(--green);border-radius:7px;padding:8px 12px;font:inherit;font-weight:650;cursor:pointer;text-decoration:none;display:inline-block}
+button.primary,.primary{color:white;background:var(--green);border-color:var(--green)}button:disabled{opacity:.55;cursor:not-allowed}
+aside button{width:100%;text-align:left;margin-bottom:7px}aside input{margin:8px 0 14px}.active{border-color:var(--green);background:#e1f0ea}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px 16px}label{display:block;font-weight:600;font-size:.9rem}
+input,select,textarea{width:100%;background:#fff;color:inherit;border:1px solid #aec3b9;border-radius:6px;padding:8px;margin-top:4px;font:inherit}textarea{resize:vertical}input:focus,select:focus,textarea:focus,button:focus-visible,a:focus-visible{outline:2px solid #2a8069;outline-offset:2px}
+details{border:1px solid var(--line);border-radius:8px;padding:10px 13px;margin-bottom:9px}summary{cursor:pointer;font-weight:700}details p{margin:8px 0;color:#405950}small,.muted{color:#456259}.pill{float:right;border-radius:12px;padding:1px 8px;background:#eff2ed;color:#35544b;font-size:12px}.approved{background:#d6f2e2}.observed{background:#ffe8c8}.file-list{padding-left:19px;overflow-wrap:anywhere}a{color:#126651}
+.actions{position:sticky;bottom:0;box-shadow:0 -5px 25px #17342f11}.actions p{margin:7px 0 0}.toolbar{display:flex;flex-wrap:wrap;gap:8px}.error{color:#a12b15}.title-row{display:flex;justify-content:space-between;align-items:start;gap:10px}
+.certificate{border-top:1px solid var(--line);margin-top:16px;padding-top:16px}.certificate p{margin:6px 0 0}
+.danger{color:#a12b15;border-color:#d2a395}button[hidden]{display:none}
+table{width:100%;border-collapse:collapse;margin-top:12px}td{border-bottom:1px solid var(--line);padding:6px 9px}td:last-child{text-align:right;white-space:nowrap}tr:last-child{background:#e1f0ea;font-weight:750}
+@media(max-width:760px){main{grid-template-columns:1fr;gap:0}header{flex-wrap:wrap}.actions{position:static}}
+</style>
+</head>
+<body>
+<header><div><p>Gestión de salida · Ecuador</p><h1>Expediente laboral</h1></div><button id="demo" type="button">Cargar datos del caso ficticio</button></header>
+<main>
+<aside>
+  <h2>Expedientes</h2>
+  <p class="muted">Los expedientes y evidencias se guardan en este navegador.</p>
+  <button id="new" type="button">+ Nuevo expediente</button>
+  <label>Buscar por nombre, empresa o identificación<input id="search" type="search"></label>
+  <div id="records"></div>
+</aside>
+<form id="form" inert>
+<section><div class="title-row"><h2>Datos y terminación</h2><span id="reference" class="muted"></span></div><div id="identity" class="grid"></div></section>
+<section>
+  <div class="title-row"><h2>Requisitos por departamento</h2><span id="progress" class="muted"></span></div>
+  <p class="muted">Adjunta la evidencia y registra responsable y fecha antes de marcar cada requisito como aprobado.</p>
+  <div id="checks"></div>
+  <div class="certificate">
+    <button type="button" class="primary" id="certificate" aria-describedby="certificate-help" disabled>Generar paz y salvo y liquidación (PDF)</button>
+    <p class="muted" id="certificate-help" aria-live="polite">Guarda un expediente para comenzar.</p>
+  </div>
+</section>
+<section>
+  <h2>Vacaciones y liquidación</h2>
+  <p class="muted">Ingrese saldos según nómina y el período aplicable. Para varios períodos o bases variables de vacaciones, concilie el importe por período y registre ajustes en otros haberes.</p>
+  <div class="grid" id="numbers"></div>
+  <p><label>Detalle de cálculo, otros haberes y deducciones<textarea name="detalle" rows="3" maxlength="1500"></textarea></label></p>
+  <button type="button" id="calculate">Calcular liquidación</button><div id="result" aria-live="polite"></div>
+</section>
+<div class="actions"><div class="toolbar"><button class="primary" id="save">Guardar expediente</button><button id="settlement" type="button" hidden>Ver liquidación PDF</button><button class="danger" id="delete-record" type="button" hidden>Eliminar expediente</button></div><p id="status" role="status"></p></div>
+</form>
+</main>
+<script>
+  import '../interfaz.js';
+</script>
+</body>
+</html>
